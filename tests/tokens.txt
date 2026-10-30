@@ -1,0 +1,4 @@
+# Tokens the mock API in mock_api.py understands.
+acme-production   dp.sa.acme
+globex            dp.sa.globex
+initech           dp.sa.noperm

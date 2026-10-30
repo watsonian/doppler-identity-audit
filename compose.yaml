@@ -1,0 +1,21 @@
+# docker compose build   builds the image (doppler-identity-audit)
+# docker compose up      starts the app with no tokens; paste them on the setup page,
+#                        where they're kept in memory only
+#
+# To start it with tokens from a Doppler config instead, use docker run as the README shows.
+services:
+  identity-audit:
+    image: doppler-identity-audit
+    build:
+      context: .
+      dockerfile: app/Dockerfile
+    ports:
+      - "127.0.0.1:8080:8080"   # reachable from this machine only
+    # Starting values for Audit Settings (the script's --stale-days, --max-ttl, --concurrency):
+    # environment:
+    #   STALE_DAYS: "90"
+    #   MAX_TTL_SECONDS: "3600"
+    #   CONCURRENCY: "4"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
